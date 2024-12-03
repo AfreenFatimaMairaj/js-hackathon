@@ -43,7 +43,7 @@ function signup() {
       console.log("User signed up:", user);
 
       // Save user data in Firestore
-      await writeData(name, email, role);
+      await writeData(name, email, role ,password);
       console.log("User stored in database.");
 
       alert("Sign up successful! Welcome, " + user.email);
@@ -57,12 +57,13 @@ function signup() {
 }
 
 // Function to write data to Firestore
-async function writeData(name, email, role) {
+async function writeData(name, email, role ,password) {
   try {
     const docRef = await addDoc(collection(db, "users"), {
       name,
       email,
       role,
+      password,
     });
     console.log("Document written with ID:", docRef.id);
   } catch (error) {
@@ -118,6 +119,7 @@ async function showUsers() {
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Password<th/>
           </tr>
         </thead>
         <tbody>
@@ -129,6 +131,7 @@ async function showUsers() {
               <td>${user.name}</td>
               <td>${user.email}</td>
               <td>${user.role}</td>
+              <td>${user.password}<td/>
             </tr>`
             )
             .join("")}
