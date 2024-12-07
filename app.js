@@ -47,8 +47,7 @@ function signup() {
       console.log("User stored in database.");
 
       alert("Sign up successful! Welcome, " + user.email);
-      // Redirect after signup
-      window.location.pathname = "users.html";
+      
     })
     .catch((error) => {
       console.error("Error signing up:", error.code, error.message);
